@@ -11,8 +11,8 @@ namespace Shared.Book
         public string Author { get; set; }
         public void Validate()
         {
-            if(string.IsNullOrEmpty(Name))
-                new BookException()
+            if (string.IsNullOrEmpty(Name))
+                new BookException("Name if null or empty");
         }
     }
 }
