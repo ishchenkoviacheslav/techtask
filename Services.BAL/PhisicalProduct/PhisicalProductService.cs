@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services.BLL.PhisicalProduct
+namespace Services.BLL
 {
-    public class PhisicalProduct : IPhisicalProduct
+    public class PhisicalProductService : IPhisicalProductService
     {
         public bool MakePackingForShipping(int importantNummer)
         {

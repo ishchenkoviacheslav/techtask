@@ -1,5 +1,4 @@
-﻿using Services.BLL.BooksService;
-using Services.BLL.DeliveryService;
+﻿using Services.BLL;
 using Shared.Book;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace Lemonbeat
         static void Main(string[] args)
         {
             Book someBook = new Book();
-            List <Type> services = new List<Type>() { new BooksService().GetType(), new DeliveryService().GetType() };
+            List <Type> services = new List<Type>() { new BooksService().GetType(), new DeliveryService().GetType(), new PhisicalProductService().GetType() };
             CoreLogic.Register.Add(someBook.GetType().Namespace + "_" + someBook.GetType().Name, services);
 
             Book book = new Book() { Author = "Tolkien", Name = "Hobbit" };

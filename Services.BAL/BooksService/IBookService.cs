@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services.BLL.BooksService
+namespace Services.BLL
 {
     public interface IBookService: IBaseService
     {
         void DuplicatePackingSlipForRoyalty();
+        void GenerateCommission(float sum);
     }
 }

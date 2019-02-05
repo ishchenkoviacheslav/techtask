@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services.BLL.VideoLessonService
+namespace Services.BLL
 {
     public class VideoLessonService : IVideoLessonService
     {

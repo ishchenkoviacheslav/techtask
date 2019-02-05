@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services.BLL.BooksService
+namespace Services.BLL
 {
     public interface IBaseService
     {
