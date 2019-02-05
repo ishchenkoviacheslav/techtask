@@ -1,0 +1,64 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "Lemonbeat/1.0.0": {
+        "dependencies": {
+          "Services.BLL": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "Lemonbeat.dll": {}
+        }
+      },
+      "DB.DAL/1.0.0": {
+        "dependencies": {
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "DB.DAL.dll": {}
+        }
+      },
+      "Services.BLL/1.0.0": {
+        "dependencies": {
+          "DB.DAL": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "runtime": {
+          "Services.BLL.dll": {}
+        }
+      },
+      "Shared/1.0.0": {
+        "runtime": {
+          "Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Lemonbeat/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DB.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Services.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

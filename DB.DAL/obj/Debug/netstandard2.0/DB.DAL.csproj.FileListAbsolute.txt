@@ -1,0 +1,12 @@
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\bin\Debug\netstandard2.0\DB.DAL.deps.json
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\bin\Debug\netstandard2.0\DB.DAL.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\bin\Debug\netstandard2.0\DB.DAL.pdb
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\bin\Debug\netstandard2.0\Shared.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\bin\Debug\netstandard2.0\Shared.pdb
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.csprojAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.AssemblyInfoInputs.cache
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.AssemblyInfo.cs
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.csproj.CopyComplete
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\DB.DAL\obj\Debug\netstandard2.0\DB.DAL.pdb

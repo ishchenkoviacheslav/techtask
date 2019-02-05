@@ -6,30 +6,25 @@ using System.Text;
 
 namespace Lemonbeat
 {
-    public class Core<T>
+    public class Core
     {
-        public void Request(List<string> actions, object model)
-        {
-            if(actions == null || actions.Count == 0)
-            {
-                CommonError.Invoke("actions is null or count == 0");
-                return;
-            }
-            switch (model)
-            {
-                case Book book:
-                    BookException bookEx = BooksService.Process(actions, book);
-                    if (bookEx == null)
-                        ResponseBookOK.Invoke(book);
-                    else
-                        ResponseBookBAD.Invoke(bookEx);
-                    break;
-                default:
-                    break;
-            }
-        }
+        //public void Request(object model, int typeOfOperation)
+        //{
+        //    switch (model)
+        //    {
+        //        case Book book:
+        //            BookException bookEx = BooksService.Process(book, typeOfOperation);
+        //            if (bookEx == null)
+        //                ResponseBookOK?.Invoke(book);
+        //            else
+        //                ResponseBookBAD?.Invoke(bookEx);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
-        public Action<T> ResponseBookOK;
+        public Action<Book> ResponseBookOK;
         public Action<BookException> ResponseBookBAD;
 
         public Action<string> CommonError;

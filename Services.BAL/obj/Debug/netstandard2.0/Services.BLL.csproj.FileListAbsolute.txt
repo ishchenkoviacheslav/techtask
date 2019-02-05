@@ -1,0 +1,14 @@
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.csprojAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.AssemblyInfoInputs.cache
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.AssemblyInfo.cs
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\Services.BLL.deps.json
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\Services.BLL.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\Services.BLL.pdb
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\DB.DAL.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\Shared.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\DB.DAL.pdb
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\bin\Debug\netstandard2.0\Shared.pdb
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.csproj.CopyComplete
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.dll
+C:\Users\user\Documents\Visual Studio 2017\Projects\Lemonbeat\Services.BAL\obj\Debug\netstandard2.0\Services.BLL.pdb
