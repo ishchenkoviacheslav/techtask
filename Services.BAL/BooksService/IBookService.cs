@@ -6,6 +6,6 @@ namespace Services.BLL.BooksService
 {
     public interface IBookService: IBaseService
     {
-
+        void DuplicatePackingSlipForRoyalty();
     }
 }

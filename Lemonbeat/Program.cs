@@ -1,4 +1,5 @@
 ﻿using Services.BLL.BooksService;
+using Services.BLL.DeliveryService;
 using Shared.Book;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,12 @@ namespace Lemonbeat
     {
         static void Main(string[] args)
         {
-            //Core<Book> core = new Core<Book>();
-            //core.Request(new Book {Author = "Anderson", Name = "My life" }, (int)BookOperations.BuyRealBook);
+            Book someBook = new Book();
+            List <Type> services = new List<Type>() { new BooksService().GetType(), new DeliveryService().GetType() };
+            CoreLogic.Register.Add(someBook.GetType().Namespace + "_" + someBook.GetType().Name, services);
+
             Book book = new Book() { Author = "Tolkien", Name = "Hobbit" };
-            Console.WriteLine(book.GetType().Name);
-            CoreLogic.Register.Add(book.GetType().Name, new List<IBaseService>() { new BooksService()});
-            Book newBook = new Book() { Author = "asf" };
-            CoreLogic.NewRequest(book, book.GetType().Name);
+            CoreLogic.NewRequest(book, book.GetType().Namespace + "_" + book.GetType().Name);
         }
     }
 }
