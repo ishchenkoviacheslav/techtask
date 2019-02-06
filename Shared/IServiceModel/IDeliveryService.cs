@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Shared.Services
 {
-    public interface IBookService
+    public interface IDeliveryModel
     {
-        string Name { get; set; }
-        string Author { get; set; }
+        string Address { get; set; }
     }
 }

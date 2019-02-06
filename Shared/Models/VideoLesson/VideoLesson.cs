@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Shared.VideoLesson
 {
-    public class VideoLesson: IVideoLessonService
+    public class VideoLesson: IVideoLessonModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

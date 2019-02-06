@@ -12,7 +12,7 @@ namespace Lemonbeat
         {
             Book someBook = new Book();
 
-            List<Type> services = new List<Type>() { new BooksService().GetType(), new DeliveryService().GetType(), new PhisicalProductService().GetType() };
+            List<Type> services = new List<Type>() { new BooksService().GetType(), new DeliveryService().GetType(), new PhisicalProductService().GetType(), new GenerateCommissionPaymentService().GetType() };
             //to do: check if this type is registered
             // check if this type is realized requirement of interfaces
             CoreLogic.Register.Add(someBook.GetType().GUID, services);

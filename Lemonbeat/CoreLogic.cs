@@ -30,6 +30,7 @@ namespace Lemonbeat
                     {
                         //can i send model to method paremeter? Is it same type?
                         //now work only with 1 parameter
+                        //properties for all services must still in one object, that's why we have only one parameter
                         if (parameters[0].ParameterType.FullName == model.ToString())
                         {
                             mi.Invoke(service, new object[] { model});

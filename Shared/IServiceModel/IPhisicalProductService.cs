@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.Services
 {
-    public interface IPhisicalProductService
+    public interface IPhisicalProductModel
     {
         int ImportantNumber { get; set; }
 

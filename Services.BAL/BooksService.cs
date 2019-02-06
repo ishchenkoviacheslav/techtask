@@ -13,16 +13,12 @@ namespace Services.BLL
             Console.WriteLine(nameof(DuplicatePackingSlipForRoyalty));
         }
 
-        public void GenerateCommission(float sum)
-        {
-            Console.WriteLine(nameof(GenerateCommission) + " " + sum);
-        }
+        
         public void CallService(Book book)
         {
             //BooksService service = new BooksService();
             DuplicatePackingSlipForRoyalty();
             //like price :)
-            GenerateCommission(book.Name.GetHashCode());
         }
     }
 }
