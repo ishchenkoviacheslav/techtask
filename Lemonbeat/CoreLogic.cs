@@ -36,9 +36,10 @@ namespace Lemonbeat
                 {
                     //example: from BookService to IBookModel
                     string currKey = "I" + typeOfService.Name.Replace("Service", "Model");
+                    List<string> currPropertiesNames = new List<string>();
                     //search current interface(him properties names by order)
-                    List<string> currPropertiesNames = interfacesPropertiesNames[currKey];
-
+                    //if no key will found(if model realize no one interface) all still OK
+                    interfacesPropertiesNames.TryGetValue(currKey,out currPropertiesNames);
                     object service = Activator.CreateInstance(typeOfService);
                     MethodInfo mi = typeOfService.GetMethod("CallService");
                     ParameterInfo[] parameters = mi.GetParameters();
