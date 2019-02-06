@@ -28,17 +28,17 @@ namespace Lemonbeat
                         mi.Invoke(service, null);
                     else
                     {
-                        //can i send model to method paremeter? Is it same type?
-                        //now work only with 1 parameter
+
+                        for (int i = 0; i < parameters.Length; i++)
+                        {
+                            //parameters[i]
+
+                        }
                         //properties for all services must still in one object, that's why we have only one parameter
-                        if (parameters[0].ParameterType.FullName == model.ToString())
-                        {
-                            mi.Invoke(service, new object[] { model});
-                        }
-                        else
-                        {
+                        //but one service can has 
+                            //how to know which parameter i need....
+                            mi.Invoke(service, new object[] { });
                             Console.WriteLine("Error. Service has different type of parameter!");
-                        }
                     }
                 }
             }

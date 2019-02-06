@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.IServiceModel
 {
-    public interface IGenerateCommissionPaymentService
+    public interface IGenerateCommissionPaymentModel
     {
         float Sum { get; set; }
     }

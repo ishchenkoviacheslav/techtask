@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class DeliveryService: IService<string>
+    public class DeliveryService
     {
         public void AddDelivery(string adress)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class PhisicalProductService: IService<int>
+    public class PhisicalProductService
     {
         public bool MakePackingForShipping(int importantNummer)
         {

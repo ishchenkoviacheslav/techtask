@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class SendEmailService : IService<string>
+    public class SendEmailService
     {
         void SendEmail(string email)
         {

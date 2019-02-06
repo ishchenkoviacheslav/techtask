@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class GenerateCommissionPaymentService: IService<float>
+    public class GenerateCommissionPaymentService
     {
         public void CallService(float sum)
         {

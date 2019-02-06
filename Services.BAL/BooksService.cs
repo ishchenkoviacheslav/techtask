@@ -6,19 +6,17 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class BooksService: IService<Book>
+    public class BooksService
     {
-        public void DuplicatePackingSlipForRoyalty()
+        public void DuplicatePackingSlipForRoyalty(string name, string Author)
         {
             Console.WriteLine(nameof(DuplicatePackingSlipForRoyalty));
         }
 
         
-        public void CallService(Book book)
+        public void CallService(string Name, string Author)
         {
-            //BooksService service = new BooksService();
-            DuplicatePackingSlipForRoyalty();
-            //like price :)
+            DuplicatePackingSlipForRoyalty(Name, Author);
         }
     }
 }

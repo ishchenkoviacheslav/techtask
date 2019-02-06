@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Shared.Book
 {
-    public class Book: IBookModel, IDeliveryModel, IPhisicalProductModel, IGenerateCommissionPaymentService
+    public class Book: IBookModel, IDeliveryModel, IPhisicalProductModel, IGenerateCommissionPaymentModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
