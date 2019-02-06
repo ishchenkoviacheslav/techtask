@@ -12,7 +12,7 @@ namespace Services.BLL
             return true;
         }
         //object because parameter don't use
-        public void CallService(object obj)
+        public void CallService()
         {
             AddFreeVideo();
         }

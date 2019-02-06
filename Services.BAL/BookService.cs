@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class BooksService
+    public class BookService
     {
         public void DuplicatePackingSlipForRoyalty(string name, string Author)
         {
