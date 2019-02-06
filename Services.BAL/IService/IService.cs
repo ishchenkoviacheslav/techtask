@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public interface IDeliveryService: IBaseService
+    public interface IService
     {
-        void AddDelivery(string adress);
+        void CallService(object obj);
     }
 }

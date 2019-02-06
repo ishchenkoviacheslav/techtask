@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Lemonbeat
@@ -8,26 +9,37 @@ namespace Lemonbeat
     {
         //register. Binds of object with his service(s)
         //Book - IBookService, IDeliveryService
-        public static Dictionary<string, List<Type>> Register = new Dictionary<string, List<Type>>();
-        public static void NewRequest<T>(T model, string type)
+        public static Dictionary<int, List<Type>> Register = new Dictionary<int, List<Type>>();
+        public static void NewRequest<T>(T model)
         {
-            if(model.GetType().Namespace + "_" + model.GetType().Name != type)
-            {
-                Console.WriteLine("Back error");
-                return;
-            }
-            if (Register[type] is null)
+            //check if Dictionary has collections of services for current model
+            if (Register[model.GetType().MetadataToken] is null)
             {
                 Console.WriteLine("Service for current type not be found!");
             }
             else
             {
-                foreach (Type typeOfService in Register[type])
+                foreach (Type typeOfService in Register[model.GetType().MetadataToken])
                 {
-                    var service = Activator.CreateInstance(typeOfService);
-                    Console.WriteLine(service.GetType().Name);
-                    //как вызывать методы
-                    //
+                    object service = Activator.CreateInstance(typeOfService);
+                    MethodInfo mi = typeOfService.GetMethod("CallService");
+                    ParameterInfo[] parameters = mi.GetParameters();
+                    if (parameters?.Length == 0)
+                        mi.Invoke(service, null);
+                    else
+                    {
+                        string parm = parameters[0].Name;
+                        string parm2 = model.GetType().Name;
+                        //can i send model to method paremeter?
+                        if ( parameters[0].MetadataToken == model.GetType().MetadataToken)
+                        {
+                            mi.Invoke(service, new object[] { model});
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error. Service has different type of parameter!");
+                        }
+                    }
                 }
             }
         }

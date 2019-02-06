@@ -4,11 +4,16 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class VideoLessonService : IVideoLessonService
+    public class VideoLessonService
     {
         public bool AddFreeVideo()
         {
+            Console.WriteLine(nameof(AddFreeVideo));
             return true;
+        }
+        public void CallService()
+        {
+            AddFreeVideo();
         }
     }
 }

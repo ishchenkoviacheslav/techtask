@@ -4,14 +4,15 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class DeliveryService : IDeliveryService
+    public class DeliveryService 
     {
         public void AddDelivery(string adress)
         {
+            Console.WriteLine(nameof(AddDelivery));
         }
-        public static void CallService()
+        public void CallService(string adress)
         {
-
+            AddDelivery(adress);
         }
     }
 }

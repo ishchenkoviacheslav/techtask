@@ -6,23 +6,23 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class BooksService: IBookService
+    public class BooksService
     {
         public void DuplicatePackingSlipForRoyalty()
         {
-
+            Console.WriteLine(nameof(DuplicatePackingSlipForRoyalty));
         }
 
         public void GenerateCommission(float sum)
         {
-
+            Console.WriteLine(nameof(GenerateCommission) + " " + sum);
         }
-        public static void CallService(Book book)
+        public void CallService(Book book)
         {
-            BooksService service = new BooksService();
-            service.DuplicatePackingSlipForRoyalty();
+            //BooksService service = new BooksService();
+            DuplicatePackingSlipForRoyalty();
             //like price :)
-            service.GenerateCommission(book.Name.GetHashCode());
+            GenerateCommission(book.Name.GetHashCode());
         }
     }
 }
