@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class PhisicalProductService
+    public class PhisicalProductService: IService<int>
     {
         public bool MakePackingForShipping(int importantNummer)
         {
-            Console.WriteLine(nameof(MakePackingForShipping));
+            Console.WriteLine(nameof(MakePackingForShipping) + " " + nameof(importantNummer) +":"+importantNummer);
             return true;
         }
         public void CallService(int number)

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class DeliveryService 
+    public class DeliveryService: IService<string>
     {
         public void AddDelivery(string adress)
         {
-            Console.WriteLine(nameof(AddDelivery));
+            Console.WriteLine(nameof(AddDelivery) + " " + nameof(adress)+ " " + adress);
         }
         public void CallService(string adress)
         {

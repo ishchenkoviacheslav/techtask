@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public interface IService
+    //every service must realize this func. Because this method is start point of service
+    public interface IService<T>
     {
-        void CallService(object obj);
+        void CallService(T obj);
     }
 }
