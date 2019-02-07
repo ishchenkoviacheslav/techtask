@@ -16,7 +16,7 @@ namespace Lemonbeat
         {
             if (MainRegister.ContainsKey(model.GetType().GUID))
             {
-                Console.WriteLine("Model already registered!");
+                Console.WriteLine($"Model {model} already registered!");
                 return;
             }
             //check if model implemented all interfaces for each service
@@ -35,6 +35,24 @@ namespace Lemonbeat
             MainRegister.Add(model.GetType().GUID, listOfServices);
 
         }
+
+        public static void RemoveModelFromModelServicePair<T>(T model)
+        {
+            if (MainRegister.ContainsKey(model.GetType().GUID))
+            {
+                MainRegister.Remove(model.GetType().GUID);
+                Console.WriteLine($"Model-Service pair has been removed");
+            }
+            else
+            {
+                Console.WriteLine($"Model-Service pair not found for current Model");
+            }
+        }
+        public static  void UnRegisterationOfModelServicesPair<T>(T model)
+        {
+
+        }
+
         //Register. Binds Model(I+NameOfService+Model) with services (IService<> or IService)
         private static Dictionary<Guid, List<Type>> MainRegister = new Dictionary<Guid, List<Type>>();
         public static void NewRequest<T>(T model)

@@ -23,6 +23,8 @@ namespace Lemonbeat
 
             Person person = new Person() { Name = "Jon", MembershipAction = MembershipAction.MakeNew, DayOfstart = DateTime.Now };
             CoreLogic.NewRequest(person);
+
+            CoreLogic.RemoveModelFromModelServicePair(book);
         }
     }
 }
