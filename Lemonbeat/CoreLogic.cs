@@ -38,7 +38,7 @@ namespace Lemonbeat
                     string currKey = "I" + typeOfService.Name.Replace("Service", "Model");
                     List<string> currPropertiesNames = new List<string>();
                     //search current interface(him properties names by order)
-                    //if no key will found(if model realize no one interface) all still OK
+                    //if no key will found(if model not implement interface) all still OK
                     interfacesPropertiesNames.TryGetValue(currKey,out currPropertiesNames);
                     object service = Activator.CreateInstance(typeOfService);
                     MethodInfo mi = typeOfService.GetMethod("CallService");

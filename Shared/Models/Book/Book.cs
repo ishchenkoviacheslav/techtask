@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Shared.Book
 {
-    public class Book: IBookModel, IDeliveryModel, IPhisicalProductModel, IGenerateCommissionPaymentModel
+    public class Book: IBookModel, IDeliveryModel, IGenerateCommissionPaymentModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -33,10 +33,6 @@ namespace Shared.Book
 
             if (string.IsNullOrEmpty(idel.Address))
                 new BookException("Address is null or empty");
-            IPhisicalProductModel iphis = this;
-            //some rule
-            if (iphis.ImportantNumber < 1000)
-                new BookException(nameof(ImportantNumber) + " less than 1000");
         }
     }
 }
