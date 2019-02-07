@@ -2,24 +2,52 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-
+using System.Linq;
 namespace Lemonbeat
 {
     public static class CoreLogic
     {
+        /// <summary>
+        /// Registration of Model-Services pair. Back error if current Model is already registered
+        /// </summary>
+        /// <param name="typeModel">Type object of your Model. Ex: myBook.GetType() </param>
+        /// <param name="listOfServices">List of services for current Model. Model must has implementation of model's Interface required of service</param>
+        public static void RegisterationOfModelServicesPair<T>(T model, List<Type> listOfServices)
+        {
+            if(MainRegister.ContainsKey(model.GetType().GUID))
+            {
+                Console.WriteLine("Model already registered!");
+                return;
+            }
+            //check if model implemented all interfaces for each service
+            foreach (Type service in listOfServices)
+            {
+                //here must be only one parameter and it must be interface 
+                ParameterInfo[] parameters = service.GetMethod("CallService").GetParameters();
+                if(parameters.Length>0)
+                {
+                    Type[] allInterfaces = model.GetType().GetInterfaces();
+                    //that interface must include into AllInterfaces
+                    if(allInterfaces.FirstOrDefault(ai => ai.Name == parameters[0].ParameterType.Name)==null)
+                        Console.WriteLine($"Interface {parameters[0].ParameterType.Name} not implemented!");
+                }
+            }
+            MainRegister.Add(model.GetType().GUID, listOfServices);
+
+        }
         //Register. Binds Model(I+NameOfService+Model) with services (IService<> or IService)
-        public static Dictionary<Guid, List<Type>> Register = new Dictionary<Guid, List<Type>>();
+        private static Dictionary<Guid, List<Type>> MainRegister = new Dictionary<Guid, List<Type>>();
         public static void NewRequest<T>(T model)
         {
             //check if Dictionary has collections of services for current model
-            if (Register[model.GetType().GUID] is null)
+            if (MainRegister[model.GetType().GUID] is null)
             {
                 Console.WriteLine("Service for current type not be found!");
                 return;
             }
             else
             {
-                foreach (Type typeOfService in Register[model.GetType().GUID])
+                foreach (Type typeOfService in MainRegister[model.GetType().GUID])
                 {
                     object service = Activator.CreateInstance(typeOfService);
                     MethodInfo mi = typeOfService.GetMethod("CallService");
