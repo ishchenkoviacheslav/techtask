@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Shared.IServiceModel;
 namespace Services.BLL
 {
-    public class GenerateCommissionPaymentService
+    public class GenerateCommissionPaymentService: IBaseService<IGenerateCommissionPaymentModel>
     {
-        public void CallService(float sum)
+        public void CallService(IGenerateCommissionPaymentModel generateCommissionPaymentModel)
         {
-            GenerateCommission(sum);
+            GenerateCommission(generateCommissionPaymentModel.Sum);
         }
 
         public void GenerateCommission(float sum)

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Shared.Services;
 namespace Services.BLL
 {
-    public class DeliveryService
+    public class DeliveryService: IBaseService<IDeliveryModel>
     {
         public void AddDelivery(string adress)
         {
             Console.WriteLine(nameof(AddDelivery) + " " + nameof(adress)+ " " + adress);
         }
-        public void CallService(string adress)
+        public void CallService(IDeliveryModel deliveryModel)
         {
-            AddDelivery(adress);
+            AddDelivery(deliveryModel.Address);
         }
     }
 }

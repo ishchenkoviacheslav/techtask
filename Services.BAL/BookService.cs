@@ -3,10 +3,10 @@ using Shared.Book;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Shared.Services;
 namespace Services.BLL
 {
-    public class BookService
+    public class BookService: IBaseService<IBookModel>
     {
         public void DuplicatePackingSlipForRoyalty(string name, string Author)
         {
@@ -14,9 +14,9 @@ namespace Services.BLL
         }
 
         
-        public void CallService(string Name, string Author)
+        public void CallService(IBookModel bookModel)
         {
-            DuplicatePackingSlipForRoyalty(Name, Author);
+            DuplicatePackingSlipForRoyalty(bookModel.Name, bookModel.Author);
         }
     }
 }

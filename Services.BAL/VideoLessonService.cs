@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class VideoLessonService
+    public class VideoLessonService: IBaseService
     {
         public bool AddFreeVideo()
         {

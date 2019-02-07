@@ -18,7 +18,7 @@ namespace Lemonbeat
             CoreLogic.Register.Add(new Person().GetType().GUID, new List<Type> { new MembershipService().GetType() });
 
 
-            Book book = new Book() { Author = "Tolkien", Name = "Hobbit", Address="street",Id = 8, ImportantNumber = 234, Sum = (float)4.6};
+            Book book = new Book() { Author = "Tolkien", Name = "Hobbit", Address = "street", Id = 8, ImportantNumber = 234, Sum = (float)4.6 };
             CoreLogic.NewRequest(book);
             VideoLesson lesson = new VideoLesson();
             CoreLogic.NewRequest(lesson);

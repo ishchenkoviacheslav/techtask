@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Shared;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Services.BLL
 {
-    public class SendEmailService
+    public class SendEmailService: IBaseService<ISendEmailModel>
     {
         void SendEmail(string email)
         {
             Console.WriteLine($"send email to {email}");
         }
-        public void CallService(string email)
+        public void CallService(ISendEmailModel sendMailModel)
         {
-            SendEmail(email);
+            SendEmail(sendMailModel.Email);
         }
     }
 }
