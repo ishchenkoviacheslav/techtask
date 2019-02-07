@@ -4,7 +4,7 @@ using System.Text;
 using Shared.Services;
 namespace Services.BLL
 {
-    public class DeliveryService: IBaseService<IDeliveryModel>
+    public class DeliveryService: IService<IDeliveryModel>
     {
         public void AddDelivery(string adress)
         {

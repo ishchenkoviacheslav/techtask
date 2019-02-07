@@ -7,8 +7,7 @@ namespace Lemonbeat
 {
     public static class CoreLogic
     {
-        //register. Binds of object with his service(s)
-        //Book - IBookService, IDeliveryService
+        //Register. Binds Model(I+NameOfService+Model) with services (IService<> or IService)
         public static Dictionary<Guid, List<Type>> Register = new Dictionary<Guid, List<Type>>();
         public static void NewRequest<T>(T model)
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Services.BLL
 {
-    public class MembershipService: IBaseService<IMembershipModel>
+    public class MembershipService: IService<IMembershipModel>
     {
         public void CreateNewMemberOrUpdate(string name, DateTime date, MembershipAction action)
         {

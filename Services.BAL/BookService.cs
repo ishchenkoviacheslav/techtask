@@ -6,7 +6,7 @@ using System.Text;
 using Shared.Services;
 namespace Services.BLL
 {
-    public class BookService: IBaseService<IBookModel>
+    public class BookService: IService<IBookModel>
     {
         public void DuplicatePackingSlipForRoyalty(string name, string Author)
         {

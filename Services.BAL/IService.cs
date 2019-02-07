@@ -8,12 +8,12 @@ namespace Services.BLL
     /// If your model have some parameter(s)
     /// </summary>
     /// <typeparam name="TInterface"></typeparam>
-    public interface IBaseService<TInterface>
+    public interface IService<TInterface>
     {
         void CallService(TInterface properties);
     }
 
-    public interface IBaseService
+    public interface IService
     {
         void CallService();
     }

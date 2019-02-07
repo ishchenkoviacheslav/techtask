@@ -12,7 +12,7 @@ namespace Lemonbeat
         static void Main(string[] args)
         {
             //to do: check if this type is registered
-            // check if this type is realized requirement of interfaces
+            // check if this type is implemented requirement of interfaces
             CoreLogic.Register.Add(new Book().GetType().GUID, new List<Type>() { new BookService().GetType(), new DeliveryService().GetType(), new GenerateCommissionPaymentService().GetType() });
             CoreLogic.Register.Add(new VideoLesson().GetType().GUID, new List<Type> { new VideoLessonService().GetType() });
             CoreLogic.Register.Add(new Person().GetType().GUID, new List<Type> { new MembershipService().GetType() });

@@ -4,7 +4,7 @@ using System.Text;
 using Shared.IServiceModel;
 namespace Services.BLL
 {
-    public class GenerateCommissionPaymentService: IBaseService<IGenerateCommissionPaymentModel>
+    public class GenerateCommissionPaymentService: IService<IGenerateCommissionPaymentModel>
     {
         public void CallService(IGenerateCommissionPaymentModel generateCommissionPaymentModel)
         {
