@@ -14,7 +14,7 @@ namespace Lemonbeat
         /// <param name="listOfServices">List of services for current Model. Model must has implementation of model's Interface required of service</param>
         public static void RegisterationOfModelServicesPair<T>(T model, List<Type> listOfServices)
         {
-            if(MainRegister.ContainsKey(model.GetType().GUID))
+            if (MainRegister.ContainsKey(model.GetType().GUID))
             {
                 Console.WriteLine("Model already registered!");
                 return;
@@ -24,11 +24,11 @@ namespace Lemonbeat
             {
                 //here must be only one parameter and it must be interface 
                 ParameterInfo[] parameters = service.GetMethod("CallService").GetParameters();
-                if(parameters.Length>0)
+                if (parameters.Length > 0)
                 {
                     Type[] allInterfaces = model.GetType().GetInterfaces();
                     //that interface must include into AllInterfaces
-                    if(allInterfaces.FirstOrDefault(ai => ai.Name == parameters[0].ParameterType.Name)==null)
+                    if (allInterfaces.FirstOrDefault(ai => ai.Name == parameters[0].ParameterType.Name) == null)
                         Console.WriteLine($"Interface {parameters[0].ParameterType.Name} not implemented!");
                 }
             }
@@ -39,28 +39,42 @@ namespace Lemonbeat
         private static Dictionary<Guid, List<Type>> MainRegister = new Dictionary<Guid, List<Type>>();
         public static void NewRequest<T>(T model)
         {
-            //check if Dictionary has collections of services for current model
-            if (MainRegister[model.GetType().GUID] is null)
+            try
             {
-                Console.WriteLine("Service for current type not be found!");
-                return;
-            }
-            else
-            {
-                foreach (Type typeOfService in MainRegister[model.GetType().GUID])
+                //check if Dictionary has collections of services for current model
+                if (!MainRegister.ContainsKey(model.GetType().GUID))
                 {
-                    object service = Activator.CreateInstance(typeOfService);
-                    MethodInfo mi = typeOfService.GetMethod("CallService");
-                    ParameterInfo[] parameters = mi.GetParameters();
-                    if (parameters?.Length == 0)
+                    Console.WriteLine("Service for current type not be found!");
+                    return;
+                }
+                else
+                {
+                    foreach (Type typeOfService in MainRegister[model.GetType().GUID])
                     {
-                        mi.Invoke(service, null);
-                    }
-                    else
-                    {
-                        mi.Invoke(service,  new object[] { model  });
+                        object service = Activator.CreateInstance(typeOfService);
+                        MethodInfo mi = typeOfService.GetMethod("CallService");
+                        ParameterInfo[] parameters = mi.GetParameters();
+                        if (parameters?.Length == 0)
+                        {
+                            mi.Invoke(service, null);
+                        }
+                        else
+                        {
+                            try
+                            {
+                                mi.Invoke(service, new object[] { model });
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
