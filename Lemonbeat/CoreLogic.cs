@@ -127,9 +127,22 @@ namespace Lemonbeat
             }
         }
 
-        public static void AddNewServiceToModel()
+        public static void AddNewServiceToModel<TModel>(TModel model, List<Type> listOfServices)
         {
+            if (model == null || listOfServices == null)
+            {
+                Console.WriteLine($"Model and list of services can not be null!");
+                return;
+            }
+            if (MainRegister.ContainsKey(model.GetType().GUID))
+            {
+                //проверить может быть сервисы уже содержаться
 
+            }
+            else
+            {
+                Console.WriteLine($"Can't add new service. Model-Service pair not found for current Model.");
+            }
         }
 
         /// <summary>
