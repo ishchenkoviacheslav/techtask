@@ -7,6 +7,10 @@ namespace Lemonbeat
 {
     public static class CoreLogic
     {
+
+        //Register. Binds Model(I+NameOfService+Model) with services (IService<> or IService)
+        private static Dictionary<Guid, List<Type>> MainRegister = new Dictionary<Guid, List<Type>>();
+
         /// <summary>
         /// Registration of Model-Services pair. Back error if current Model is already registered
         /// </summary>
@@ -35,6 +39,7 @@ namespace Lemonbeat
 
         }
 
+        //required in relation to services. Than if no services(forgot include), no requirement
         private static bool CheckModelHasAllRequiredInterfaces<TModel>(TModel model, List<Type> listOfServices)
         {
             bool IsAllOK = true;
@@ -65,8 +70,12 @@ namespace Lemonbeat
             return IsAllOK;
         }
 
-        public static void RemoveModelFromModelServicePair<T>(T model)
+        public static void RemoveModelFromModelServicePair<TModel>(TModel model)
         {
+            if (model==null)
+            {
+                Console.WriteLine("Model can't be null!");
+            }
             if (MainRegister.ContainsKey(model.GetType().GUID))
             {
                 MainRegister.Remove(model.GetType().GUID);
@@ -77,13 +86,57 @@ namespace Lemonbeat
                 Console.WriteLine($"Can't remove. Model-Service pair not found for current Model.");
             }
         }
-        public static  void UnRegisterationOfModelServicesPair<T>(T model, LinkedList<Type> listOfServices)
+        /// <summary>
+        /// Unbind model from some or all service(s).
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="model"></param>
+        /// <param name="listOfServices"></param>
+        public static  void UnRegisterationOfModelServicesPair<TModel>(TModel model, List<Type> listOfServices)
+        {
+            if (model == null || listOfServices == null)
+            {
+                Console.WriteLine($"Model and list of services can not be null!");
+                return;
+            }
+            if (MainRegister.ContainsKey(model.GetType().GUID))
+            {
+                List<Type> oldListOfService = MainRegister[model.GetType().GUID];
+                //lists must be same (by data, not only by count) 
+                if(listOfServices.Count == oldListOfService.Count)
+                {
+                    //OldListOfService must has more services than list from parameter(listOfService) and include all services which include list from parameter
+                    var notSameService = listOfServices.Except(oldListOfService);
+                    if (notSameService?.Count()==0)
+                    {
+                        Console.WriteLine("You want to unregister all services, your Model-Service bind will remove totally");
+                        RemoveModelFromModelServicePair(model);
+                        return;
+                    }
+                    Console.WriteLine("Your set of services is different from set of registered services!");
+                    return;
+                }
+                List<Type> updatedListOfServices = (List<Type>)oldListOfService.Except(listOfServices);
+                MainRegister.Remove(model.GetType().GUID);
+                MainRegister[model.GetType().GUID] = updatedListOfServices;
+                Console.WriteLine($"Model-Service(s) pair has been unregistered");
+            }
+            else
+            {
+                Console.WriteLine($"Can't unregistered. Model-Service pair not found for current Model.");
+            }
+        }
+
+        public static void AddNewServiceToModel()
         {
 
         }
 
-        //Register. Binds Model(I+NameOfService+Model) with services (IService<> or IService)
-        private static Dictionary<Guid, List<Type>> MainRegister = new Dictionary<Guid, List<Type>>();
+        /// <summary>
+        /// Befor you need register(bind) your model for some service(s)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="model">Model must implemented IModel interface for bind with service</param>
         public static void NewRequest<T>(T model)
         {
             try
@@ -127,63 +180,5 @@ namespace Lemonbeat
     }
 
 
-    //public static class CoreLogic
-    //{
-    //    //register. Binds of object with his service(s)
-    //    //Book - IBookService, IDeliveryService
-    //    public static Dictionary<Guid, List<Type>> Register = new Dictionary<Guid, List<Type>>();
-    //    public static void NewRequest<T>(T model)
-    //    {
-    //        //one item is name of interface and collection of properties names by order!
-    //        Dictionary<string, List<string>> interfacesPropertiesNames = new Dictionary<string, List<string>>();
-    //        foreach (Type interfaceType in model.GetType().GetInterfaces())
-    //        {
-    //            List<string> namesOfPropsByOrder = new List<string>();
-    //            PropertyInfo[] propsInfo = interfaceType.GetProperties();
-    //            for (int i = 0; i < propsInfo.Length; i++)
-    //            {
-    //                namesOfPropsByOrder.Add(propsInfo[i].Name);
-    //            }
-    //            interfacesPropertiesNames.Add(interfaceType.Name, namesOfPropsByOrder);
-    //        }
-    //        //check if Dictionary has collections of services for current model
-    //        if (Register[model.GetType().GUID] is null)
-    //        {
-    //            Console.WriteLine("Service for current type not be found!");
-    //            return;
-    //        }
-    //        else
-    //        {
-    //            foreach (Type typeOfService in Register[model.GetType().GUID])
-    //            {
-    //                //example: from BookService to IBookModel
-    //                string currKey = "I" + typeOfService.Name.Replace("Service", "Model");
-    //                List<string> currPropertiesNames = new List<string>();
-    //                //search current interface(him properties names by order)
-    //                //if no key will found(if model not implement interface) all still OK
-    //                interfacesPropertiesNames.TryGetValue(currKey, out currPropertiesNames);
-    //                object service = Activator.CreateInstance(typeOfService);
-    //                MethodInfo mi = typeOfService.GetMethod("CallService");
-    //                ParameterInfo[] parameters = mi.GetParameters();
-    //                if (parameters?.Length == 0)
-    //                {
-    //                    mi.Invoke(service, null);
-    //                }
-    //                else
-    //                {
-    //                    List<object> parametersData = new List<object>();
-    //                    if (parameters.Length != currPropertiesNames.Count)
-    //                        Console.WriteLine("FATAL ERROR!");
-    //                    for (int i = 0; i < parameters.Length; i++)
-    //                    {
-    //                        parametersData.Add(model.GetType().GetProperty(currPropertiesNames[i]).GetValue(model, null));
-    //                    }
-    //                    //properties for all services must still in one object, that's why we have only one parameter
-    //                    //but one service can has few parameters
-    //                    mi.Invoke(service, parametersData.ToArray());
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+  
 }
