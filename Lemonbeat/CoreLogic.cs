@@ -12,13 +12,32 @@ namespace Lemonbeat
         /// </summary>
         /// <param name="typeModel">Type object of your Model. Ex: myBook.GetType() </param>
         /// <param name="listOfServices">List of services for current Model. Model must has implementation of model's Interface required of service</param>
-        public static void RegisterationOfModelServicesPair<T>(T model, List<Type> listOfServices)
+        public static void RegisterationOfModelServicesPair<TModel>(TModel model, List<Type> listOfServices)
         {
+            if(model == null || listOfServices == null)
+            {
+                Console.WriteLine($"Model and list of services can not be null!");
+                return;
+            }
             if (MainRegister.ContainsKey(model.GetType().GUID))
             {
                 Console.WriteLine($"Model {model} already registered!");
                 return;
             }
+            if(CheckModelHasAllRequiredInterfaces(model, listOfServices))
+            {
+                MainRegister.Add(model.GetType().GUID, listOfServices);
+            }
+            else
+            {
+                Console.WriteLine("Model implemented not all interfaces. Not Registered!");
+            }
+
+        }
+
+        private static bool CheckModelHasAllRequiredInterfaces<TModel>(TModel model, List<Type> listOfServices)
+        {
+            bool IsAllOK = true;
             //check if model implemented all interfaces for each service
             foreach (Type service in listOfServices)
             {
@@ -28,12 +47,22 @@ namespace Lemonbeat
                 {
                     Type[] allInterfaces = model.GetType().GetInterfaces();
                     //that interface must include into AllInterfaces
+                    //parameters[0] because CallMethod always take only 1 parameter(some interface)
                     if (allInterfaces.FirstOrDefault(ai => ai.Name == parameters[0].ParameterType.Name) == null)
+                    {
                         Console.WriteLine($"Interface {parameters[0].ParameterType.Name} not implemented!");
+                        IsAllOK = false;
+                        return IsAllOK;
+                    }
+                }
+                else
+                {
+                    //some model may has no parameter required
                 }
             }
-            MainRegister.Add(model.GetType().GUID, listOfServices);
-
+            if(listOfServices.Count == 0)
+                Console.WriteLine("Model required no one service! All OK");
+            return IsAllOK;
         }
 
         public static void RemoveModelFromModelServicePair<T>(T model)
@@ -45,10 +74,10 @@ namespace Lemonbeat
             }
             else
             {
-                Console.WriteLine($"Model-Service pair not found for current Model");
+                Console.WriteLine($"Can't remove. Model-Service pair not found for current Model.");
             }
         }
-        public static  void UnRegisterationOfModelServicesPair<T>(T model)
+        public static  void UnRegisterationOfModelServicesPair<T>(T model, LinkedList<Type> listOfServices)
         {
 
         }
