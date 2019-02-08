@@ -137,7 +137,8 @@ namespace Lemonbeat
             if (MainRegister.ContainsKey(model.GetType().GUID))
             {
                 //проверить может быть сервисы уже содержаться
-
+                //если все сервисы новые, значит проверить CheckModelHasAllRequiredInterfaces
+                //если и тут ОК, совместить коллекции с сервисами и перезаписть в словарь
             }
             else
             {
