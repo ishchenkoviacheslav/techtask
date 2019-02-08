@@ -18,11 +18,19 @@ namespace Lemonbeat
         /// <param name="listOfServices">List of services for current Model. Model must has implementation of model's Interface required of service</param>
         public static void RegisterationOfModelServicesPair<TModel>(TModel model, List<Type> listOfServices)
         {
-            if(model == null || listOfServices == null)
+            if(model == null || listOfServices == null || listOfServices?.Count == 0)
             {
-                Console.WriteLine($"Model and list of services can not be null!");
+                Console.WriteLine($"Model and list of services can not be null or empty!");
                 return;
             }
+
+            //all services into list must be uniqe
+            if (!(listOfServices.Distinct().Count() == listOfServices.Count))
+            {
+                Console.WriteLine("services into list must be unique!");
+                return;
+            }
+
             if (MainRegister.ContainsKey(model.GetType().GUID))
             {
                 Console.WriteLine($"Model {model} already registered!");
@@ -94,9 +102,15 @@ namespace Lemonbeat
         /// <param name="listOfServices"></param>
         public static  void UnRegisterationOfModelServicesPair<TModel>(TModel model, List<Type> listOfServices)
         {
-            if (model == null || listOfServices == null)
+            if (model == null || listOfServices == null || listOfServices?.Count == 0)
             {
-                Console.WriteLine($"Model and list of services can not be null!");
+                Console.WriteLine($"Model and list of services can not be null or empty!");
+                return;
+            }
+            //all services into list must be uniqe
+            if (!(listOfServices.Distinct().Count() == listOfServices.Count))
+            {
+                Console.WriteLine("services into list must be unique!");
                 return;
             }
             if (MainRegister.ContainsKey(model.GetType().GUID))
@@ -127,18 +141,48 @@ namespace Lemonbeat
             }
         }
 
-        public static void AddNewServiceToModel<TModel>(TModel model, List<Type> listOfServices)
+        /// <summary>
+        /// Add new service(s) to bind-list of services of Model
+        /// </summary>
+        /// <typeparam name="TModel"</typeparam>
+        /// <param name="model">>Model must implement  all interfaces required by services</param>
+        /// <param name="newServices">List of new services. Services can not duplicate, and you can not bind service twice</param>
+        public static void AddNewServiceToModel<TModel>(TModel model, List<Type> newServices)
         {
-            if (model == null || listOfServices == null)
+            if (model == null || newServices == null || newServices?.Count == 0)
             {
-                Console.WriteLine($"Model and list of services can not be null!");
+                Console.WriteLine($"Model and list of services can not be null or empty!");
                 return;
             }
-            if (MainRegister.ContainsKey(model.GetType().GUID))
+            //all services into list must be uniqe
+            if(!(newServices.Distinct().Count() == newServices.Count))
             {
-                //проверить может быть сервисы уже содержаться
-                //если все сервисы новые, значит проверить CheckModelHasAllRequiredInterfaces
-                //если и тут ОК, совместить коллекции с сервисами и перезаписть в словарь
+                Console.WriteLine("services into list must be unique!");
+                return;
+            }
+                if (MainRegister.ContainsKey(model.GetType().GUID))
+            {
+                //Check may be service(s) is already binded
+                List<Type> currentListOfService = MainRegister[model.GetType().GUID];
+                List<Type> serviceDuplicate = currentListOfService.Intersect(newServices).ToList();
+                if(serviceDuplicate.Count > 0)
+                {
+                    Console.WriteLine("Model already bind to this service(s). Specify another service(s)");
+                    return;
+                }
+                //Model must implement all required interfaces for all services
+                if (CheckModelHasAllRequiredInterfaces(model, newServices))
+                {
+                    //если и тут ОК, совместить коллекции с сервисами и перезаписть в словарь
+                    List<Type> allCombinedServices = currentListOfService.Concat(newServices).ToList();
+                    MainRegister.Remove(model.GetType().GUID);
+                    MainRegister[model.GetType().GUID] = allCombinedServices;
+                    Console.WriteLine($"Service(s) has been added");
+                }
+                else
+                {
+                    Console.WriteLine("Not all interface(s) is implemented");
+                }
             }
             else
             {

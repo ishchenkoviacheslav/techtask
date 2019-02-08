@@ -18,7 +18,7 @@ namespace Lemonbeat
             Book book = new Book() { Author = "Tolkien", Name = "Hobbit", Address = "street", Id = 8, ImportantNumber = 234, Sum = (float)4.6 };
             CoreLogic.NewRequest(book);
 
-            CoreLogic.UnRegisterationOfModelServicesPair(book, new List<Type>() { new DeliveryService().GetType(), new BookService().GetType(),  new GenerateCommissionPaymentService().GetType() });
+            //CoreLogic.UnRegisterationOfModelServicesPair(book, new List<Type>() { new DeliveryService().GetType(), new BookService().GetType(),  new GenerateCommissionPaymentService().GetType() });
             //VideoLesson lesson = new VideoLesson() { Author = "Smith", Name = "John", Id = 123 };
             //CoreLogic.NewRequest(lesson);
 
